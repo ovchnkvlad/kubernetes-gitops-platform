@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: workloads
+  namespace: argocd
+spec:
+  description: Namespaced application workloads with no privileged cluster access
+  sourceRepos:
+    - https://example.invalid/kubernetes-gitops-platform.git
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: platform-status
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+  namespaceResourceBlacklist:
+    - group: rbac.authorization.k8s.io
+      kind: RoleBinding
+  orphanedResources:
+    warn: true

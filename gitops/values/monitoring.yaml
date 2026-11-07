@@ -1,0 +1,20 @@
+grafana:
+  persistence:
+    enabled: false
+
+alertmanager:
+  alertmanagerSpec:
+    retention: 24h
+    storage: {}
+
+prometheus:
+  prometheusSpec:
+    retention: 24h
+    storageSpec: {}
+    resources:
+      requests:
+        cpu: 100m
+        memory: 512Mi
+      limits:
+        cpu: 500m
+        memory: 1Gi
