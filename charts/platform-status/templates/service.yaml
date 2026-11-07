@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "platform-status.name" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "platform-status.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  selector:
+    {{- include "platform-status.selectorLabels" . | nindent 4 }}
+  ports:
+    - name: http
+      port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
