@@ -1,0 +1,13 @@
+.DS_Store
+.idea/
+.vscode/
+
+# Local clusters and generated manifests
+.kube/
+.rendered/
+rendered.yaml
+
+# Local environment files must never contain committed credentials
+.env
+.env.*
+!.env.example
